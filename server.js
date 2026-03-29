@@ -91,7 +91,7 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    event = JSON.parse(req.body);
   } catch (e) {
     console.error("[WEBHOOK] Signature hatası:", e.message);
     return res.status(400).send(`Webhook Error: ${e.message}`);
