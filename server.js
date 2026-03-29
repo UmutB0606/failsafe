@@ -153,10 +153,6 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
   res.json({ received: true });
 });
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
-
 // ─── API ───
 app.get("/api/recoveries", (_, res) => {
   const list = Object.values(recoveries).sort((a, b) =>
